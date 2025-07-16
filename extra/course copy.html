@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manual Testing Certification Course</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      color: #34495e;
+    }
+    p {
+      line-height: 1.6;
+    }
+    img.certificate {
+      max-width: 100%;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+      
+
+ 
+    :root {
+      --main-color: #4CAF87;
+      --background: #ffffff;
+      --text-color: #333333;
+      --sidebar-bg: #4CAF87;
+      --sidebar-text: #ffffff;
+      --button-bg: #276749;
+      --button-text: #ffffff;
+      --link-color: #4CAF87;
+    }
+
+     body.dark-mode {
+      --background: #121212;
+      --text-color: #276749;    
+      --sidebar-bg: #333333;
+      --sidebar-text: #ffffff;
+      --button-bg: #ffffff;
+      --button-text: #4CAF87;
+      --link-color: #80e3bf;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    aside {
+      width:
+        240px;
+      background:
+        var(--sidebar-bg);
+      color:
+        var(--sidebar-text);
+      display:
+        flex;
+      flex-direction:
+        column;
+      align-items:
+        center;
+      padding:
+        30px 15px;
+      flex-shrink:
+        0;
+    }
+
+    aside img {
+      width:
+        100px;
+      height:
+        100px;
+      border-radius:
+        50%;
+      margin-bottom:
+        15px;
+      object-fit:
+        cover;
+    }
+
+    aside h1 {
+      font-size:
+        20px;
+      margin-bottom:
+        10px;
+      text-align:
+        center;
+    }
+
+    aside p {
+      font-size:
+        12px;
+      text-align:
+        center;
+      margin-bottom:
+        20px;
+      line-height:
+        1.5;
+    }
+
+    .social-icons {
+      display:
+        flex;
+      justify-content:
+        center;
+      gap:
+        10px;
+      margin-bottom:
+        25px;
+      flex-wrap:
+        wrap;
+    }
+
+    .social-icons a {
+      background:
+        rgba(255,
+          255,
+          255,
+          0.2);
+      color:
+        var(--sidebar-text);
+      width:
+        30px;
+      height:
+        30px;
+      border-radius:
+        50%;
+      display:
+        flex;
+      justify-content:
+        center;
+      align-items:
+        center;
+      font-size:
+        14px;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background:
+        #fff;
+      color:
+        var(--sidebar-bg);
+    }
+
+    nav {
+      width:
+        100%;
+      margin-top:
+        20px;
+    }
+
+    nav ul {
+      list-style:
+        none;
+      padding:
+        0;
+      margin:
+        0;
+    }
+
+    nav li {
+      margin:
+        10px 0;
+    }
+
+    nav a {
+      color:
+        var(--sidebar-text);
+      text-decoration:
+        none;
+      font-size:
+        14px;
+      display:
+        flex;
+      align-items:
+        center;
+      gap:
+        8px;
+      padding:
+        8px 12px;
+      border-radius:
+        4px;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    nav a:hover {
+      background:
+        rgba(255,
+          255,
+          255,
+          0.2);
+      color:
+        teal;
+      /*
+    Changes
+    text
+    color
+    to
+    black
+    on
+    hover
+    */
+    }
+
+    .hire-btn {
+      background: var(--button-bg);
+      color:
+        var(--button-text);
+      border:
+        none;
+      padding:
+        8px 16px;
+      font-size:
+        14px;
+      border-radius:
+        4px;
+      margin-top:
+        25px;
+      cursor:
+        pointer;
+      transition:
+        all 0.3s;
+      display:
+        flex;
+      align-items:
+        center;
+      gap:
+        8px;
+    }
+
+    .hire-btn:hover {
+      background:
+        #276749;
+    }
+
+    .dark-mode-toggle {
+      margin-top:
+        30px;
+      text-align:
+        center;
+    }
+
+    .dark-mode-toggle .label-text {
+      display:
+        block;
+      font-size:
+        12px;
+      margin-bottom:
+        5px;
+      color:
+        var(--sidebar-text);
+    }
+
+    /*
+    Toggle
+    Switch
+    Container
+    */
+    .switch {
+      position:
+        relative;
+      display:
+        inline-block;
+      width:
+        42px;
+      height:
+        22px;
+    }
+
+    /*
+    Hide
+    default
+    checkbox
+    */
+    .switch input {
+      opacity:
+        0;
+      width:
+        0;
+      height:
+        0;
+    }
+
+    /*
+    Slider
+    (rounded
+    pill
+    background)
+    */
+    .slider {
+      position:
+        absolute;
+      cursor:
+        pointer;
+      background-color:
+        #96f5ca;
+      border-radius:
+        34px;
+      top:
+        0;
+      left:
+        0;
+      right:
+        0;
+      bottom:
+        0;
+      transition:
+        0.4s;
+    }
+
+    /*
+    Round
+    knob
+    */
+    .slider::before {
+      position:
+        absolute;
+      content:
+        "";
+      height:
+        16px;
+      width:
+        16px;
+      left:
+        4px;
+      bottom:
+        3px;
+      background-color:
+        white;
+      border-radius:
+        50%;
+      transition:
+        0.4s;
+    }
+
+    /*
+    When
+    checked
+    (dark
+    mode
+    active)
+    */
+    .switch input:checked+.slider {
+      background-color:
+        #4a5568;
+      /*
+    dark
+    gray
+    */
+    }
+
+    .switch input:checked+.slider::before {
+      transform:
+        translateX(18px);
+      /*
+    slide
+    the
+    knob
+    */
+    }
+
+    main {
+      flex: 1;
+      padding: 40px;
+      max-width: 100%;
+    }
+
+    main h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    main h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--main-color);
+    }
+
+    main p {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    main a {
+      color: var(--link-color);
+      text-decoration: none;
+    } /* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #4CAF87;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+  </style>
+</head>
+<body><aside>
+    <img src="images/hero-headshot.jpg" alt="Nithya Baskaran">
+    <h1>Nithya Baskaran</h1>
+    <p>Hi, my name is Nithya Baskaran and I'm a senior software quality engineer. Welcome to my personal website!</p>
+
+    <div class="social-icons">
+    <a href="www.linkedin.com/in/nithya-baskaran-55908a324" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/NithyaRamya" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-codepen"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fas fa-globe"></i></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="#potfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="#services"><i class="fas fa-wallet"></i> Services & Pricing</a></li>
+        <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+        <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <!-- <li><a href="#"><i class="fas fa-cogs"></i> More Pages <i class="fas fa-chevron-down"></i></a></li>-->
+         <li class="dropdown">
+  <a href="#"><i class="fas fa-cogs"></i> More Pages <i class="fas fa-chevron-down"></i></a>
+  <ul class="dropdown-menu">
+    <li><a href="course.html">Course Page</a></li>
+    <li><a href="blog.html">Blog Post</a></li>
+  </ul>
+</li> 
+      </ul>
+    </nav>
+
+    <a style="text-decoration:none" href="contact.html"><button class="hire-btn"><i class="fas fa-paper-plane"></i> Hire
+        Me</button></a>
+
+
+
+    <div class="dark-mode-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkToggle">
+        <span class="slider"></span>
+      </label>
+      <span class="label-text">Dark Mode</span>
+    </div>
+    </div>
+  </aside>
+  <main>
+  <div class="container">
+    <h1>Manual Testing Certification Course</h1>
+    <p>
+      This comprehensive course covers the fundamentals of software manual testing. It’s perfect for beginners or professionals seeking to enhance their testing skills and improve software quality.
+    </p>
+    <h2>Course Topics:</h2>
+    <ul>
+      <li>Software Development Life Cycle (SDLC)</li>
+      <li>Testing Life Cycle (STLC)</li>
+      <li>Test Plan and Test Case Design</li>
+      <li>Defect Management Process</li>
+      <li>Test Execution and Reporting</li>
+      <li>Tools for Manual Testing</li>
+    </ul>
+
+    <h2>Course Details:</h2>
+    <p>
+      Duration: 4 weeks<br>
+      Mode: Online<br>
+      Certification: Yes (upon successful completion)
+    </p>
+
+    <h2>Course Completion Certificate:</h2>
+    <p>Here’s the certificate of completing the course:</p>
+    <img src="images/Completioncertificate.jpg" alt="Certificate Sample" class="certificate" />
+  </div>
+  <script src="script.js"></script>
+  </main>
+</body>
+</html>

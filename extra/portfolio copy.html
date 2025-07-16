@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Nithya Baskaran</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --main-color: #4CAF87;
+      --background: #ffffff;
+      --text-color: #333333;
+      --sidebar-bg: #4CAF87;
+      --sidebar-text: #ffffff;
+      --button-bg: #4CAF87;
+      --button-text: #ffffff;
+      --link-color: #4CAF87;
+    }
+
+    body.dark {
+      --background: #121212;
+      --text-color: #ffffff;
+      --sidebar-bg: #333333;
+      --sidebar-text: #ffffff;
+      --button-bg: #ffffff;
+      --button-text: #4CAF87;
+      --link-color: #80e3bf;
+    }
+
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    :root {
+      --background: #ffffff;
+      --text-color: #333;
+      --sidebar-bg: #41b883;
+      --sidebar-text: #ffffff;
+      --button-bg: #2f855a;
+      --button-text: #ffffff;
+    }
+
+    body.dark-mode {
+      --background: #1a202c;
+      --text-color: #e2e8f0;
+      --sidebar-bg: #2d3748;
+      --sidebar-text: #e2e8f0;
+      --button-bg: #4a5568;
+      --button-text: #ffffff;
+    }
+
+    :root {
+      --sidebar-bg: #41b883;
+      /* teal green */
+      --sidebar-text: #fff;
+      --button-bg: #2f855a;
+      --button-text: #fff;
+    }
+
+    aside {
+      width: 240px;
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+      flex-shrink: 0;
+    }
+
+    aside img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    aside h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    aside p {
+      font-size: 12px;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--sidebar-text);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #fff;
+      color: var(--sidebar-bg);
+    }
+
+    nav {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav li {
+      margin: 10px 0;
+    }
+
+    nav a {
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: teal;
+      /* Changes text color to black on hover */
+    }
+
+
+    .hire-btn {
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      margin-top: 25px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hire-btn:hover {
+      background: #276749;
+    }
+
+    .dark-mode-toggle {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .dark-mode-toggle .label-text {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 5px;
+      color: var(--sidebar-text);
+    }
+
+    /* Toggle Switch Container */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+    }
+
+    /* Hide default checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* Slider (rounded pill background) */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      background-color: #96f5ca;
+      border-radius: 34px;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: 0.4s;
+    }
+
+    /* Round knob */
+    .slider::before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    /* When checked (dark mode active) */
+    .switch input:checked+.slider {
+      background-color: #4a5568;
+      /* dark gray */
+    }
+
+    .switch input:checked+.slider::before {
+      transform: translateX(18px);
+      /* slide the knob */
+    }
+
+    :root {
+      --main-color: #4CAF87;
+      --background: #ffffff;
+      --text-color: #333333;
+      --sidebar-bg: #4CAF87;
+      --sidebar-text: #ffffff;
+      --btn-bg: #2f855a;
+      --btn-text: #ffffff;
+    }
+
+    body.dark {
+      --background: #121212;
+      --text-color: #ffffff;
+      --sidebar-bg: #333333;
+      --sidebar-text: #ffffff;
+      --btn-bg: #ffffff;
+      --btn-text: #4CAF87;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      background: var(--background);
+      color: var(--text-color);
+      min-height: 100vh;
+      transition: all 0.3s;
+    }
+
+
+    main {
+      flex: 1;
+      padding: 40px;
+      max-width: 100%;
+    }
+
+    .portfolio-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .portfolio-header h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #008080;
+    }
+
+    .portfolio-header p {
+      font-size: 14px;
+      color: var(--text-color);
+      margin-bottom: 20px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .portfolio-header .hire-butn {
+      margin-top: 10px;
+      background: var(--btn-bg);
+      color: var(--btn-text);
+      border: none;
+      padding: 8px 14px;
+      font-size: 14px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+
+    .filter-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .filter-buttons button {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-weight: 500;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+    }
+      .filter-buttons a {
+      background: none;
+      border: none;
+      color: var(--text-color);
+      font-weight: 500;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+
+    .filter-buttons button.active,
+    .filter-buttons button:hover,
+    .filter-buttons a:active,
+    .filter-buttons a:hover
+    
+     {
+      border-bottom: 2px solid var(--main-color);
+      color: var(--main-color);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      border: 2px solid transparent;
+      border-radius: 8px;
+      padding: 10px;
+      transition: border-color 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 128, 128, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 4px 12px rgba(0, 128, 128, 1);
+    }
+
+    .project-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(44, 62, 80, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .project-card:hover .overlay {
+      opacity: 1;
+    }
+
+    .project-card:hover img,
+    .project-card:hover .project-info {
+      filter: blur(3px);
+    }
+
+    .overlay i {
+      font-size: 24px;
+      margin-bottom: 6px;
+    }
+
+    .overlay span {
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 12px;
+      color: var(--main-color);
+    }
+
+    @media(max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      aside {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+
+    .project-section {
+  display: none;
+}
+
+.filter-buttons button.active,
+.filter-buttons button:hover {
+  border-bottom: 2px solid var(--main-color);
+  color: var(--main-color);
+}
+
+
+#all {
+  display: block;
+}
+.project-card {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 10px;
+  transition: border-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 0.4);
+}
+
+.project-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 128, 128, 1);
+}
+
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #4CAF87;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.card-image {
+  position: relative;
+  width: 120px;
+  height: 80px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.4s ease;
+}
+
+.card-image .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(44, 62, 80, 0.6);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.card-image .overlay i {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.card-image .overlay span {
+  font-size: 12px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.card-image:hover img {
+  filter: blur(3px);
+}
+
+.card-image:hover .overlay {
+  opacity: 1;
+}
+
+  </style>
+</head>
+
+<body>
+  <aside>
+    <img src="images/hero-headshot.jpg" alt="Nithya Baskaran">
+    <h1>Nithya Baskaran</h1>
+    <p>Hi, my name is Nithya Baskaran and I'm a senior software quality engineer. Welcome to my personal website!</p>
+
+    <div class="social-icons">
+    <a href="www.linkedin.com/in/nithya-baskaran-55908a324" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/NithyaRamya" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-codepen"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fas fa-globe"></i></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="about.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <li><a href="#"><i class="fas fa-wallet"></i> Services & Pricing</a></li>
+        <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+        <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li class="dropdown"> <a href="#"><i class="fas fa-cogs"></i> More Pages <i class="fas fa-chevron-down"></i></a>
+  <ul class="dropdown-menu">
+    <li><a href="course.html">Course Page</a></li>
+    <li><a href="blog.html">Blog Post</a></li>
+  </ul>
+</li> 
+      </ul>
+    </nav>
+
+    <a style="text-decoration:none" href="contact.html"><button class="hire-btn"><i class="fas fa-paper-plane"></i> Hire
+        Me</button></a>
+
+
+
+    <div class="dark-mode-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkToggle">
+        <span class="slider"></span>
+      </label>
+      <span class="label-text">Dark Mode</span>
+    </div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="portfolio-header">
+      <h2>Portfolio</h2>
+      <p>Welcome to my online portfolio. I’m a dedicated Software Manual Tester with a passion for ensuring high-quality, bug-free software experiences. With a keen eye for detail and a methodical approach, I specialize in identifying issues before they reach end users. I’m currently open to freelance or contract opportunities.
+Need someone to thoroughly test your application and ensure it meets your standards? Let’s work together!</p>
+      <!-- <button class="hire-butn"><i class="fas fa-paper-plane"></i> Hire Me</button>  -->
+      <a style="text-decoration:none" href="contact.html"><button class="hire-butn"><i class="fas fa-paper-plane"></i>
+          Hire
+          Me</button></a>
+
+    </div>
+
+  <div class="filter-buttons">
+  <button class="active" data-filter="all">All</button>
+  <button data-filter="automation">Automation Testing</button>
+  <button data-filter="book">Book Coloring</button>
+  <button data-filter="resin">Resin Arts</button>
+  <button data-filter="frontend">Frontend</button>
+</div>
+
+
+    <section id="all" class="project-section">
+  <div class="portfolio-grid">
+          <div class="project-card">
+  <div class="card-image">
+    <img src="images/orangehrm.PNG" alt="Project 1">
+    <div class="overlay">
+  <a href="case-study.html">
+    <i class="fas fa-eye"></i>
+    <span>Case Study</span>
+  </a>
+</div>
+  </div>
+  <div class="project-info">
+    <h4>OrangeHRM - Automation Testing</h4>
+    <p>Orange HRM comes as a comprehensive solution for the efficient management and development of your Human Resource.</p>
+    <small>Client: OrangeHRM</small>
+  </div>
+</div>
+      <div class="project-card">
+    <img src="images/orangehrm.PNG" alt="Project 1">
+    <div class="overlay">
+      <a href="case-study.html" style="color: white; text-decoration: none;">
+        <i class="fas fa-eye"></i>
+        <span>Case Study</span>
+      </a>
+    </div>
+    <div class="project-info">
+      <h4>OrangeHRM - Automation Testing</h4>
+      <p>Orange HRM comes as a comprehensive solution for the efficient management and development of your Human Resource.</p>
+      <small>Client: OrangeHRM</small>
+    </div>
+  </div>
+      <div class="project-card">
+        <img src="images/event.jpg" alt="Project 3">
+        <div class="project-info">
+          <h4>Event Management Website - HTML</h4>
+          <p>Creating an event webpage is an exciting way to showcase information about an event, including its schedule, speakers, and contact details. </p>
+          <small>Client: Startup Hub</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/alathur.jpg" alt="Project 4" >
+        <div class="project-info">
+          <h4>Book - Adobe Photoshop</h4>
+          <p>Photoshop is the go-to tool for editing and retouching photos, as well as for creating professional digital artwork. </p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/Untitled design.png" alt="Project 5" >
+        <div class="project-info">
+          <h4>Resin Art - Mangalsutra preservation</h4>
+          <p>It involves pouring or transferring an object with epoxy resin. This is a two-component resin. </p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/resin.PNG" alt="Project 6" >
+        <div class="project-info">
+          <h4>Resin Art - Birthday Gifts</h4>
+          <p>Thick thick, glossy topcoat that graces the surface of artwork, photos, woodand resin art craft projects for that gorgeous modern look.</p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/IMG-20240228-WA0025.jpg" alt="Project 7" >
+        <div class="project-info">
+          <h4>Resin Art - Alphabet Keychains</h4>
+          <p>Silicone Keychain Resin Moulds are used – ideal for crafting resin alphabet charms, petri dish effects, and memory keepsakes.</p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+  </div>
+</section>
+
+<section id="automation" class="project-section">
+  <div class="portfolio-grid">
+    <!-- OrangeHRM -->
+    <div class="project-card">
+      <img src="images/orangehrm.PNG" alt="OrangeHRM">
+      <div class="project-info">
+        <h4>OrangeHRM - Automation Testing</h4>
+        <p>Project intro lorem ipsum dolor sit amet...</p>
+        <small>Client: OrangeHRM</small>
+      </div>
+    </div>
+
+    <!-- Adactin -->
+    <div class="project-card">
+      <img src="images/Adactin.PNG" alt="Adactin">
+      <div class="project-info">
+        <h4>Adactin - Automation Testing</h4>
+        <p>Project intro lorem ipsum dolor sit amet...</p>
+        <small>Client: Adactin</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="project-section">
+  <div class="portfolio-grid">
+    <!-- Alathur Brothers -->
+    <div class="project-card">
+      <img src="images/alathur.jpg" alt="Book">
+      <div class="project-info">
+        <h4>Book - Adobe Photoshop</h4>
+        <p>Book Coloring Project intro lorem ipsum...</p>
+        <small>Client: Public</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="resin" class="project-section">
+  <div class="portfolio-grid">
+    <div class="project-card">
+      <img src="images/IMG-20240228-WA0023.jpg" alt="Resin Art 1">
+      <div class="project-info">
+        <h4>Resin Art - Mangalsutra preservation</h4>
+        <p>Lorem ipsum dolor sit amet...</p>
+        <small>Client: Public</small>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/resin.PNG" alt="Resin Art 2">
+      <div class="project-info">
+        <h4>Resin Art - Birthday Gifts</h4>
+        <p>Lorem ipsum dolor sit amet...</p>
+        <small>Client: Public</small>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/IMG-20240228-WA0025.jpg" alt="Resin Art 3">
+      <div class="project-info">
+        <h4>Resin Art - Alphabet Keychains</h4>
+        <p>Lorem ipsum dolor sit amet...</p>
+        <small>Client: Public</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="frontend" class="project-section">
+  <div class="portfolio-grid">
+    <!-- Alathur Brothers -->
+    <div class="project-card">
+      <img src="images/event.jpg" alt="frontend">
+      <div class="project-info">
+       <h4>Event Management Website - HTML</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Startup Hub</small>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- <div class="portfolio-grid">
+      <div class="project-card">
+        <img src="images/orangehrm.PNG" alt="Project 1" id="automationtesting">
+        <div class="project-info">
+          <h4>OrangeHRM - Automation Testing</h4>
+          <p>Project intro lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus.</p>
+          <small>Client: OrangeHRM</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/Adactin.PNG" alt="Project 2" id="automationtesting">
+        <div class="project-info">
+          <h4>Adactin - Automation Testing</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Adactin</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/event.jpg" alt="Project 3" id="frontend">
+        <div class="project-info">
+          <h4>Event Management Website - HTML</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Startup Hub</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/alathur.jpg" alt="Project 4" id="book">
+        <div class="project-info">
+          <h4>Book - Adobe Photoshop</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/IMG-20240228-WA0023.jpg" alt="Project 5" id="resinarts">
+        <div class="project-info">
+          <h4>Resin Art - Mangalsutra preservation</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/resin.PNG" alt="Project 6" id="resinarts">
+        <div class="project-info">
+          <h4>Resin Art - Birthday Gifts</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Public</small>
+        </div>
+      </div>
+      <div class="project-card">
+        <img src="images/IMG-20240228-WA0025.jpg" alt="Project 7" id="resinarts">
+        <div class="project-info">
+          <h4>Resin Art - Alphabet Keychains</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cum sociis natoque penatibus et magnis dis
+            parturient montes.</p>
+          <small>Client: Public</small>
+        </div>
+      </div> -->
+
+
+      
+  </main>
+
+  
+  <script>
+  document.getElementById("darkToggle").addEventListener("change", function () {
+    document.body.classList.toggle("dark", this.checked);
+  });
+
+  // Filtering functionality
+  const buttons = document.querySelectorAll(".filter-buttons button");
+  const sections = document.querySelectorAll(".project-section");
+
+  buttons.forEach(button => {
+    button.addEventListener("click", () => {
+      // Remove 'active' class from all buttons
+      buttons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      // Get the filter name
+      const filter = button.getAttribute("data-filter");
+
+      // Hide all sections
+      sections.forEach(section => {
+        section.style.display = "none";
+      });
+
+      // Show the matched section
+      if (filter === "all") {
+        document.getElementById("all").style.display = "block";
+      } else {
+        const section = document.getElementById(filter);
+        if (section) {
+          section.style.display = "block";
+        }
+      }
+    });
+  });
+</script>
+
+</body>
+
+</html>

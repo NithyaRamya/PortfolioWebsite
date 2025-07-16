@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manual Testing Certification Course</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --main-color: #4CAF87;
+      --background: linear-gradient(135deg, #f9f9f9, #e2d1c3);
+      --text-color: #333;
+      --sidebar-bg: #4CAF87;
+      --sidebar-text: #ffffff;
+      --button-bg: #276749;
+      --button-text: #ffffff;
+      --link-color: #4CAF87;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode {
+      --background: #121212;
+      --text-color: #f5f5f5;
+      --sidebar-bg: #333;
+      --sidebar-text: #ffffff;
+      --button-bg: #ffffff;
+      --button-text: #4CAF87;
+      --link-color: #80e3bf;
+      --card-bg: #1e1e1e;
+      --card-shadow: rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text-color);
+      transition: all 0.4s ease;
+    }
+
+    aside {
+      width: 240px;
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 15px;
+      flex-shrink: 0;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    aside img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid var(--button-text);
+    }
+
+    aside h1 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    aside p {
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .social-icons a {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--sidebar-text);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 14px;
+      transition: all 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #fff;
+      color: var(--sidebar-bg);
+      transform: scale(1.2);
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+    }
+
+    nav li {
+      margin: 10px 0;
+    }
+
+    nav a {
+      color: var(--sidebar-text);
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+    }
+
+    .hire-btn {
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 4px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .hire-btn:hover {
+      background: #1d4e39;
+      transform: translateY(-2px);
+    }
+
+    .dark-mode-toggle {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .dark-mode-toggle .label-text {
+      font-size: 12px;
+      margin-bottom: 5px;
+      display: block;
+      color: var(--sidebar-text);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 22px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #96f5ca;
+      transition: 0.4s;
+      border-radius: 34px;
+    }
+
+    .slider::before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 3px;
+      background-color: white;
+      border-radius: 50%;
+      transition: 0.4s;
+    }
+
+    .switch input:checked + .slider {
+      background-color: #4a5568;
+    }
+
+    .switch input:checked + .slider::before {
+      transform: translateX(18px);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding: 40px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container {
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 800px;
+      box-shadow: 0 8px 30px var(--card-shadow);
+    }
+
+    .container h1 {
+      color: var(--main-color);
+      margin-bottom: 20px;
+      font-size: 32px;
+    }
+
+    .container h2 {
+      color: #34495e;
+      margin-top: 30px;
+      font-size: 22px;
+      border-bottom: 2px solid var(--main-color);
+      padding-bottom: 6px;
+      margin-bottom: 15px;
+    }
+
+    .container p {
+      line-height: 1.6;
+      margin-bottom: 15px;
+      font-size: 15px;
+      color: var(--text-color);
+    }
+
+    .container ul {
+      list-style: disc;
+      padding-left: 20px;
+      margin-bottom: 20px;
+      color: var(--text-color);
+    }
+
+    .container li {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .container img.certificate {
+      max-width: 100%;
+      margin-top: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s;
+    }
+
+    .container img.certificate:hover {
+      transform: scale(1.05);
+    }
+
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }aside {
+      width:
+        240px;
+      background:
+        var(--sidebar-bg);
+      color:
+        var(--sidebar-text);
+      display:
+        flex;
+      flex-direction:
+        column;
+      align-items:
+        center;
+      padding:
+        30px 15px;
+      flex-shrink:
+        0;
+    }
+
+    aside img {
+      width:
+        100px;
+      height:
+        100px;
+      border-radius:
+        50%;
+      margin-bottom:
+        15px;
+      object-fit:
+        cover;
+    }
+
+    aside h1 {
+      font-size:
+        20px;
+      margin-bottom:
+        10px;
+      text-align:
+        center;
+    }
+
+    aside p {
+      font-size:
+        12px;
+      text-align:
+        center;
+      margin-bottom:
+        20px;
+      line-height:
+        1.5;
+    }
+
+    .social-icons {
+      display:
+        flex;
+      justify-content:
+        center;
+      gap:
+        10px;
+      margin-bottom:
+        25px;
+      flex-wrap:
+        wrap;
+    }
+
+    .social-icons a {
+      background:
+        rgba(255,
+          255,
+          255,
+          0.2);
+      color:
+        var(--sidebar-text);
+      width:
+        30px;
+      height:
+        30px;
+      border-radius:
+        50%;
+      display:
+        flex;
+      justify-content:
+        center;
+      align-items:
+        center;
+      font-size:
+        14px;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background:
+        #fff;
+      color:
+        var(--sidebar-bg);
+    }
+
+    nav {
+      width:
+        100%;
+      margin-top:
+        20px;
+    }
+
+    nav ul {
+      list-style:
+        none;
+      padding:
+        0;
+      margin:
+        0;
+    }
+
+    nav li {
+      margin:
+        10px 0;
+    }
+
+    nav a {
+      color:
+        var(--sidebar-text);
+      text-decoration:
+        none;
+      font-size:
+        14px;
+      display:
+        flex;
+      align-items:
+        center;
+      gap:
+        8px;
+      padding:
+        8px 12px;
+      border-radius:
+        4px;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    nav a:hover {
+      background:
+        rgba(255,
+          255,
+          255,
+          0.2);
+      color:
+        teal;
+      /*
+    Changes
+    text
+    color
+    to
+    black
+    on
+    hover
+    */
+    }
+
+    .hire-btn {
+      background: var(--button-bg);
+      color:
+        var(--button-text);
+      border:
+        none;
+      padding:
+        8px 16px;
+      font-size:
+        14px;
+      border-radius:
+        4px;
+      margin-top:
+        25px;
+      cursor:
+        pointer;
+      transition:
+        all 0.3s;
+      display:
+        flex;
+      align-items:
+        center;
+      gap:
+        8px;
+    }
+
+    .hire-btn:hover {
+      background:
+        #276749;
+    }
+
+    .dark-mode-toggle {
+      margin-top:
+        30px;
+      text-align:
+        center;
+    }
+
+    .dark-mode-toggle .label-text {
+      display:
+        block;
+      font-size:
+        12px;
+      margin-bottom:
+        5px;
+      color:
+        var(--sidebar-text);
+    }
+
+    /*
+    Toggle
+    Switch
+    Container
+    */
+    .switch {
+      position:
+        relative;
+      display:
+        inline-block;
+      width:
+        42px;
+      height:
+        22px;
+    }
+
+    /*
+    Hide
+    default
+    checkbox
+    */
+    .switch input {
+      opacity:
+        0;
+      width:
+        0;
+      height:
+        0;
+    }
+
+    /*
+    Slider
+    (rounded
+    pill
+    background)
+    */
+    .slider {
+      position:
+        absolute;
+      cursor:
+        pointer;
+      background-color:
+        #96f5ca;
+      border-radius:
+        34px;
+      top:
+        0;
+      left:
+        0;
+      right:
+        0;
+      bottom:
+        0;
+      transition:
+        0.4s;
+    }
+
+    /*
+    Round
+    knob
+    */
+    .slider::before {
+      position:
+        absolute;
+      content:
+        "";
+      height:
+        16px;
+      width:
+        16px;
+      left:
+        4px;
+      bottom:
+        3px;
+      background-color:
+        white;
+      border-radius:
+        50%;
+      transition:
+        0.4s;
+    }
+
+    /*
+    When
+    checked
+    (dark
+    mode
+    active)
+    */
+    .switch input:checked+.slider {
+      background-color:
+        #4a5568;
+      /*
+    dark
+    gray
+    */
+    }
+
+    .switch input:checked+.slider::before {
+      transform:
+        translateX(18px);
+      /*
+    slide
+    the
+    knob
+    */
+    }
+/* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #4CAF87;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <aside>
+    <img src="images/hero-headshot.jpg" alt="Nithya Baskaran">
+    <h1>Nithya Baskaran</h1>
+    <p>Hi, my name is Nithya Baskaran and I'm a senior software quality engineer. Welcome to my personal website!</p>
+
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/nithya-baskaran-55908a324" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/NithyaRamya" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-codepen"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fas fa-globe"></i></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <!-- <li><a href="#services"><i class="fas fa-wallet"></i> Services & Pricing</a></li> -->
+        <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+        <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li class="dropdown">
+          <a href="#"><i class="fas fa-cogs"></i> More Pages <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="course.html">Course Page</a></li>
+            <li><a href="blog.html">Blog Post</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <a href="contact.html" class="hire-btn"><i class="fas fa-paper-plane"></i> Hire Me</a>
+
+    <div class="dark-mode-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkToggle">
+        <span class="slider"></span>
+      </label>
+      <span class="label-text">Dark Mode</span>
+    </div>
+  </aside>
+
+  <main>
+    <div class="container">
+      <h1>Manual Testing Certification Course</h1>
+      <p>
+        This comprehensive course covers the fundamentals of software manual testing. It’s perfect for beginners or professionals seeking to enhance their testing skills and improve software quality.
+      </p>
+      <h2>Course Topics:</h2>
+      <ul>
+        <li>Software Development Life Cycle (SDLC)</li>
+        <li>Testing Life Cycle (STLC)</li>
+        <li>Test Plan and Test Case Design</li>
+        <li>Defect Management Process</li>
+        <li>Test Execution and Reporting</li>
+        <li>Tools for Manual Testing</li>
+      </ul>
+
+      <h2>Course Details:</h2>
+      <p>
+        <strong>Duration:</strong> 4 weeks<br>
+        <strong>Mode:</strong> Online<br>
+        <strong>Certification:</strong> Yes (upon successful completion)
+      </p>
+
+      <h2>Course Completion Certificate:</h2>
+      <p>Here’s the certificate of completing the course:</p>
+      <img src="images/Completioncertificate.jpg" alt="Certificate Sample" class="certificate" />
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('darkToggle').addEventListener('change', function () {
+      document.body.classList.toggle('dark-mode', this.checked);
+    });
+  </script>
+</body>
+</html>

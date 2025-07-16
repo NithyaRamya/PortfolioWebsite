@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Study: Coloring Book Illustrations</title>
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <style>
+        :root {
+      --main-color: #4CAF87;
+      --background: #ffffff;
+      --text-color: #333333;
+      --sidebar-bg: #4CAF87;
+      --sidebar-text: #ffffff;
+      --button-bg: #276749;
+      --button-text: #ffffff;
+      --link-color: #4CAF87;
+    }
+
+     body.dark-mode {
+      --background: #121212;
+      --text-color: #276749;    
+      --sidebar-bg: #333333;
+      --sidebar-text: #ffffff;
+      --button-bg: #ffffff;
+      --button-text: #4CAF87;
+      --link-color: #80e3bf;
+    }
+
+   body.dark-mode h1, h2, p{
+    color: #ffffff;
+   }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    .project-header {
+      margin-bottom: 30px;
+    }
+    .client-info {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      display: flex;
+      gap: 20px;
+    }
+    .client-info img {
+      max-width: 250px;
+      border-radius: 8px;
+    }
+    .client-details ul {
+      padding-left: 20px;
+    }
+    section {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    .images {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .images img {
+      width: 48%;
+      border-radius: 8px;
+    }
+    body {
+      display: flex;
+      min-height: 100vh;
+      background: var(--background);
+      color: var(--text-color);
+      transition: all 0.3s ease;
+    }
+
+    aside {
+      width:
+        240px;
+      background:
+        var(--sidebar-bg);
+      color:
+        var(--sidebar-text);
+      display:
+        flex;
+      flex-direction:
+        column;
+      align-items:
+        center;
+      padding:
+        30px 15px;
+      flex-shrink:
+        0;
+    }
+
+    aside img {
+      width:
+        100px;
+      height:
+        100px;
+      border-radius:
+        50%;
+      margin-bottom:
+        15px;
+      object-fit:
+        cover;
+    }
+
+    aside h1 {
+      font-size:
+        20px;
+      margin-bottom:
+        10px;
+      text-align:
+        center;
+    }
+
+    aside p {
+      font-size:
+        12px;
+      text-align:
+        center;
+      margin-bottom:
+        20px;
+      line-height:
+        1.5;
+    }
+
+    .social-icons {
+      display:
+        flex;
+      justify-content:
+        center;
+      gap:
+        10px;
+      margin-bottom:
+        25px;
+      flex-wrap:
+        wrap;
+    }
+
+    .social-icons a {
+      background:
+        rgba(255,
+          255,
+          255,
+          0.2);
+      color:
+        var(--sidebar-text);
+      width:
+        30px;
+      height:
+        30px;
+      border-radius:
+        50%;
+      display:
+        flex;
+      justify-content:
+        center;
+      align-items:
+        center;
+      font-size:
+        14px;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background:
+        #fff;
+      color:
+        var(--sidebar-bg);
+    }
+
+    nav {
+      width:
+        100%;
+      margin-top:
+        20px;
+    }
+
+    nav ul {
+      list-style:
+        none;
+      padding:
+        0;
+      margin:
+        0;
+    }
+
+    nav li {
+      margin:
+        10px 0;
+    }
+
+    nav a {
+      color:
+        var(--sidebar-text);
+      text-decoration:
+        none;
+      font-size:
+        14px;
+      display:
+        flex;
+      align-items:
+        center;
+      gap:
+        8px;
+      padding:
+        8px 12px;
+      border-radius:
+        4px;
+      transition:
+        background 0.3s,
+        color 0.3s;
+    }
+
+    nav a:hover {
+      background:
+        rgba(255,
+          255,
+          255,
+          0.2);
+      color:
+        teal;
+      /*
+    Changes
+    text
+    color
+    to
+    black
+    on
+    hover
+    */
+    }
+
+    .hire-btn {
+      background: var(--button-bg);
+      color:
+        var(--button-text);
+      border:
+        none;
+      padding:
+        8px 16px;
+      font-size:
+        14px;
+      border-radius:
+        4px;
+      margin-top:
+        25px;
+      cursor:
+        pointer;
+      transition:
+        all 0.3s;
+      display:
+        flex;
+      align-items:
+        center;
+      gap:
+        8px;
+    }
+
+    .hire-btn:hover {
+      background:
+        #276749;
+    }
+
+    .dark-mode-toggle {
+      margin-top:
+        30px;
+      text-align:
+        center;
+    }
+
+    .dark-mode-toggle .label-text {
+      display:
+        block;
+      font-size:
+        12px;
+      margin-bottom:
+        5px;
+      color:
+        var(--sidebar-text);
+    }
+
+    /*
+    Toggle
+    Switch
+    Container
+    */
+    .switch {
+      position:
+        relative;
+      display:
+        inline-block;
+      width:
+        42px;
+      height:
+        22px;
+    }
+
+    /*
+    Hide
+    default
+    checkbox
+    */
+    .switch input {
+      opacity:
+        0;
+      width:
+        0;
+      height:
+        0;
+    }
+
+    /*
+    Slider
+    (rounded
+    pill
+    background)
+    */
+    .slider {
+      position:
+        absolute;
+      cursor:
+        pointer;
+      background-color:
+        #96f5ca;
+      border-radius:
+        34px;
+      top:
+        0;
+      left:
+        0;
+      right:
+        0;
+      bottom:
+        0;
+      transition:
+        0.4s;
+    }
+
+    /*
+    Round
+    knob
+    */
+    .slider::before {
+      position:
+        absolute;
+      content:
+        "";
+      height:
+        16px;
+      width:
+        16px;
+      left:
+        4px;
+      bottom:
+        3px;
+      background-color:
+        white;
+      border-radius:
+        50%;
+      transition:
+        0.4s;
+    }
+
+    /*
+    When
+    checked
+    (dark
+    mode
+    active)
+    */
+    .switch input:checked+.slider {
+      background-color:
+        #4a5568;
+      /*
+    dark
+    gray
+    */
+    }
+
+    .switch input:checked+.slider::before {
+      transform:
+        translateX(18px);
+      /*
+    slide
+    the
+    knob
+    */
+    }
+
+    main {
+      flex: 1;
+      padding: 40px;
+      max-width: 100%;
+    }
+
+    main h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    main h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--main-color);
+    }
+
+    main p {
+      font-size: 14px;
+      margin-bottom: 15px;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    main a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+/* Mobile Responsive */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      aside {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .dark-mode-toggle {
+        margin-top: 10px;
+      }
+    }
+    /* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #4CAF87;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <aside>
+    <img src="images/hero-headshot.jpg" alt="Nithya Baskaran">
+    <h1>Nithya Baskaran</h1>
+    <p>Hi, my name is Nithya Baskaran and I'm a senior software quality engineer. Welcome to my personal website!</p>
+
+    <div class="social-icons">
+      <a href="www.linkedin.com/in/nithya-baskaran-55908a324" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/NithyaRamya" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+      <a href="#"><i class="fab fa-codepen"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fas fa-globe"></i></a>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+        <li><a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+        <!-- <li><a href="#"><i class="fas fa-wallet"></i> Services & Pricing</a></li> -->
+        <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+        <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        <li class="dropdown">
+          <a href="#"><i class="fas fa-cogs"></i> More Pages <i class="fas fa-chevron-down"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="course.html">Course Page</a></li>
+            <li><a href="blog.html">Blog Post</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <a style="text-decoration:none" href="contact.html">
+      <button class="hire-btn"><i class="fas fa-paper-plane"></i> Hire Me</button>
+    </a>
+
+    <div class="dark-mode-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkToggle">
+        <span class="slider"></span>
+      </label>
+      <span class="label-text">Dark Mode</span>
+    </div>
+  </aside>
+
+  <main>
+    <div class="container">
+      <div class="project-header">
+        <h1>Case Study: Coloring Book Illustrations</h1>
+        <p>This project involved digitally coloring hand-drawn illustrations for a children’s book using Adobe Photoshop, ensuring vibrant visuals suitable for print and digital formats.</p>
+      </div>
+
+      <div class="client-info">
+        <img src="images/alathur.jpg" alt="Book Cover Illustration" />
+        <div class="client-details">
+          <h2>Book Title: Alathur Brothers</h2>
+          <p><strong>Author:</strong> Lakshmi Publications</p>
+          <p><strong>Genre:</strong> Children’s Illustration Book</p>
+          <p><strong>Target Age:</strong> 5-8 years</p>
+          <h3>Project Requirements</h3>
+          <ul>
+            <li>Convert scanned sketches into clean digital line art</li>
+            <li>Apply bright, engaging colors suitable for children</li>
+            <li>Ensure images are print-ready with proper resolution and color profile</li>
+            <li>Maintain consistent style and palette across pages</li>
+          </ul>
+        </div>
+      </div>
+
+      <section>
+        <h2>Project Overview</h2>
+        <p>
+          “Adventures in Colorland” is a children’s book featuring whimsical characters and fantasy settings. The illustrations were initially created on paper and required digital coloring to prepare them for publishing. The project demanded careful color selection and technical precision to ensure high-quality printed results and engaging visuals for young readers.
+        </p>
+      </section>
+
+      <section>
+        <h2>The Challenge</h2>
+        <p>
+          Several challenges arose during the digital coloring process:
+        </p>
+        <ul>
+          <li><strong>Cleaning Scans:</strong> Scanned line art included pencil marks and smudges that needed removal for clean digital outlines.</li>
+          <li><strong>Color Consistency:</strong> Maintaining a uniform palette across all pages while keeping scenes lively and diverse.</li>
+          <li><strong>Layer Management:</strong> Complex scenes required organized layers to separate backgrounds, characters, and special effects.</li>
+          <li><strong>Print Specifications:</strong> Ensuring correct color modes (CMYK), resolution (300 DPI), and bleed margins for professional printing.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Steps Followed in Photoshop</h2>
+        <p>
+          Below are the detailed steps I followed using Adobe Photoshop to color the book illustrations:
+        </p>
+        <ul>
+          <li><strong>Scan & Import:</strong> Scanned the original sketches at 600 DPI and imported them into Photoshop.</li>
+          <li><strong>Clean Up:</strong> Used Levels and Threshold adjustments to enhance line art and removed blemishes with the Eraser and Healing Brush tools.</li>
+          <li><strong>Separate Line Art:</strong> Converted line art to a transparent layer using “Multiply” blend mode so colors could be added underneath.</li>
+          <li><strong>Create Base Colors:</strong> Created separate layers for base colors of characters, objects, and backgrounds.</li>
+          <li><strong>Add Shading & Highlights:</strong> Applied shadows and highlights using soft brushes, set to different layer blending modes (Overlay, Multiply).</li>
+          <li><strong>Refine Edges:</strong> Zoomed in to fix any color spills beyond the outlines for a crisp look.</li>
+          <li><strong>Color Correction:</strong> Used Hue/Saturation adjustments for color harmony and vibrancy.</li>
+          <li><strong>Prepare for Print:</strong> Converted files to CMYK mode and adjusted levels for accurate printing colors.</li>
+          <li><strong>Export:</strong> Saved final images as high-resolution TIFF or PDF files ready for publishing.</li>
+        </ul>
+        <div class="images">
+          <img src="images/adobe.jpg" alt="Photoshop Layers Screenshot">
+          <img src="images/photoshop.jpg" alt="Colored Illustration Sample">
+        </div>
+      </section>
+
+      <section>
+        <h2>The Results</h2>
+        <p>
+          The completed book illustrations achieved:
+        </p>
+        <ul>
+          <li>Consistent and vibrant color palette across all pages</li>
+          <li>High-quality print-ready files meeting publishing standards</li>
+          <li>Visually engaging artwork that captured the imagination of children</li>
+          <li>Positive feedback from readers and the publishing team</li>
+        </ul>
+        <p>
+          This project combined artistic creativity with technical skill, enhancing my experience in digital illustration and print production.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

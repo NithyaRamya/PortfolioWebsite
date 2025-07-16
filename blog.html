@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - Nithya Baskaran</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --main-color: #4CAF87;
+            --background: #fff;
+            --text-color: #333;
+            --sidebar-bg: #4CAF87;
+            --sidebar-text: #fff;
+            --card-bg: #f9f9f9;
+            --btn-bg: #4CAF87;
+            --btn-text: #fff;
+            --button-bg: #276749;
+        }
+
+        body.dark {
+            --background: #121212;
+            --text-color: #fff;
+            --sidebar-bg: #333;
+            --sidebar-text: #fff;
+            --card-bg: #1e1e1e;
+            --btn-bg: #fff;
+            --btn-text: #4CAF87;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+
+        /* Sidebar — no scroll */
+        aside {
+            width: 240px;
+            background: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 15px;
+            flex-shrink: 0;
+            /* no height or overflow set here */
+        }
+
+
+        aside img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        aside h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        aside p {
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--sidebar-text);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #fff;
+            color: var(--sidebar-bg);
+        }
+
+        nav {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin: 10px 0;
+        }
+
+        nav a {
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: teal;
+            /* Changes text color to black on hover */
+        }
+
+
+        .hire-btn {
+            background: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            margin-top: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hire-btn:hover {
+            background: #276749;
+        }
+
+        .dark-mode-toggle {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .dark-mode-toggle .label-text {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: var(--sidebar-text);
+        }
+
+        /* Toggle Switch Container */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 42px;
+            height: 22px;
+        }
+
+        /* Hide default checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Slider (rounded pill background) */
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            background-color: #96f5ca;
+            border-radius: 34px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            transition: 0.4s;
+        }
+
+        /* Round knob */
+        .slider::before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            border-radius: 50%;
+            transition: 0.4s;
+        }
+
+        /* When checked (dark mode active) */
+        .switch input:checked+.slider {
+            background-color: #4a5568;
+            /* dark gray */
+        }
+
+        .switch input:checked+.slider::before {
+            transform: translateX(18px);
+            /* slide the knob */
+        }
+
+        main {
+            flex: 1;
+            padding: 40px;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .blog-header h2 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .subscribe-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .subscribe-box input {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+
+        .subscribe-box button {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+        }
+
+        .card-content h4 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .card-content p {
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .card-content small {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .next-button {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .next-button button {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 10px 30px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #888;
+        }
+
+        /* Flip Card Container */
+       
+.flip-card {
+  background-color: transparent;
+  perspective: 1000px;
+  min-height: 300px;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+}
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            backface-visibility: hidden;
+            box-shadow: 0 2px 5px rgba(11, 146, 117, 1);
+            background: var(--card-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /* FRONT IMAGE - reduced height */
+        .flip-card-front img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+            margin-bottom: 5px;
+        }
+
+        .flip-card-front h4 {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .flip-card-front small {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* BACK FACE */
+        .flip-card-back {
+            transform: rotateY(180deg);
+            text-align: center;
+        }
+
+        .flip-card-back p {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .flip-card-back .read-more-btn {
+            display: inline-block;
+            background: var(--main-color);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            transition: background 0.3s;
+        }
+
+        .flip-card-back .read-more-btn:hover {
+            background: #3b9f6f;
+        }
+
+
+        @media(max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            aside {
+                width: 100%;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+
+            nav {
+                display: none;
+            }
+        }
+
+        /* Dropdown styles */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: #4CAF87;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  min-width: 180px;
+  z-index: 999;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  padding: 10px 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+  background: #f5f5f5;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+    </style>
+</head>
+
+<body>
+    <aside>
+        <img src="images/hero-headshot.jpg" alt="Nithya Baskaran">
+        <h1>Nithya Baskaran</h1>
+        <p>Hi, my name is Nithya Baskaran and I'm a senior software quality engineer. Welcome to my personal website!
+        </p>
+
+        <div class="social-icons">
+            <a href="www.linkedin.com/in/nithya-baskaran-55908a324" target="_blank" rel="noopener noreferrer"><i
+                    class="fab fa-linkedin-in"></i></a>
+            <a href="https://github.com/NithyaRamya" target="_blank" rel="noopener noreferrer"><i
+                    class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-codepen"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fas fa-globe"></i></a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-user"></i> About Me</a></li>
+                <li><a href="portfolio.html"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+                <!-- <li><a href="#"><i class="fas fa-wallet"></i> Services & Pricing</a></li> -->
+                <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+                <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li class="dropdown">
+  <a href="#"><i class="fas fa-cogs"></i> More Pages <i class="fas fa-chevron-down"></i></a>
+  <ul class="dropdown-menu">
+    <li><a href="course.html">Course Page</a></li>
+    <li><a href="blog.html">Blog Post</a></li>
+  </ul>
+</li> 
+            </ul>
+        </nav>
+
+        <a style="text-decoration: none;" href="contact.html" class="hire-btn"><i class="fas fa-paper-plane"></i> Hire
+            Me</a>
+
+
+
+
+        <div class="dark-mode-toggle">
+            <label class="switch">
+                <input type="checkbox" id="darkToggle">
+                <span class="slider"></span>
+            </label>
+            <span class="label-text">Dark Mode</span>
+        </div>
+
+    </aside>
+
+    <main>
+        <div class="blog-header">
+            <h2>A Blog About Software, Creativity, and Life</h2>
+            <p>Subscribe to get new updates!</p>
+        </div>
+
+        <div class="subscribe-box">
+            <input type="email" placeholder="Enter email">
+            <button>Subscribe</button>
+        </div>
+
+        <div class="blog-grid">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/selenium.jpg" alt="Java">
+                        <div class="card-content">
+                            <h4>Java, Selenium & Cucumber Tips</h4>
+                            <small>Published: 3 days ago</small>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+                            <p>Best practices for UI automation using Java and Cucumber for BDD-style testing.</p>
+                            <a href="blogpost.html" class="read-more-btn"><i class="fas fa-arrow-right"></i> Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/resin.jpg" alt="Resin Art">
+                        <div class="card-content">
+                            <h4>Exploring Resin Art as a Creative Outlet</h4>
+                            <small>Published: 1 week ago</small>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+                            <p>How creating resin art helps balance work and life for software professionals.</p>
+                            <a href="blogpost.html" class="read-more-btn"><i class="fas fa-arrow-right"></i> Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/volunteering.jpg" alt="Volunteering">
+                        <div class="card-content">
+                            <h4>Volunteering in Public Events</h4>
+                            <small>Published: 2 weeks ago</small>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+                            <p>Why volunteering can boost your network, confidence, and career growth.</p>
+                            <a href="blogpost.html" class="read-more-btn"><i class="fas fa-arrow-right"></i> Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/htmlcss.jpg" alt="HTML CSS">
+                        <div class="card-content">
+                            <h4>Mastering HTML & CSS for Testers</h4>
+                            <small>Published: 2 weeks ago</small>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+                            <p>How front-end knowledge strengthens your ability to test and debug efficiently.</p>
+                            <a href="blogpost.html" class="read-more-btn"><i class="fas fa-arrow-right"></i> Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/remote.jpg" alt="Remote Work">
+                        <div class="card-content">
+                            <h4>Working Remotely as a QA Engineer</h4>
+                            <small>Published: 1 month ago</small>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+                            <p>Challenges, tips, and tools for managing productivity in remote testing roles.</p>
+                            <a href="blogpost.html" class="read-more-btn"><i class="fas fa-arrow-right"></i> Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img src="images/learning.png" alt="Learning">
+                        <div class="card-content">
+                            <h4>Learning Automation in 30 Days</h4>
+                            <small>Published: 1 month ago</small>
+                        </div>
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card-content">
+                            <p>Steps I followed to transition from manual testing to automation with confidence.</p>
+                            <a href="blogpost.html" class="read-more-btn"><i class="fas fa-arrow-right"></i> Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="next-button">
+            <button><i class="fas fa-arrow-right"></i> Next</button>
+        </div>
+
+        <footer>
+            Template Copyright © Nithya
+        </footer>
+    </main>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("darkToggle").addEventListener("change", function () {
+            document.body.classList.toggle("dark", this.checked);
+        });
+    </script>
+</body>
+
+</html>
